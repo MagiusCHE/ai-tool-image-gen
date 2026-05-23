@@ -1,0 +1,23 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.local
+*.part
+
+# Per-user Claude Code workspace settings (path personali, non condivisibili).
+.claude/
+
+# Generated images: produzione e prove finiscono altrove, mai nel repo.
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Config XDG copiata per sbaglio in root.
+/config.json
+
+# Backup di file editati a mano (es. .claude.json.bak.<ts>).
+*.bak
+*.bak.*

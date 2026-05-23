@@ -1,0 +1,29 @@
+{
+  "bg_model": {
+    "class_type": "LoadBackgroundRemovalModel",
+    "inputs": {
+      "bg_removal_name": "%BG_MODEL%"
+    }
+  },
+  "bg_mask": {
+    "class_type": "RemoveBackground",
+    "inputs": {
+      "image": ["%IMAGE_NODE%", 0],
+      "bg_removal_model": ["bg_model", 0]
+    }
+  },
+  "rgba": {
+    "class_type": "JoinImageWithAlpha",
+    "inputs": {
+      "image": ["%IMAGE_NODE%", 0],
+      "alpha": ["bg_mask", 0]
+    }
+  },
+  "save": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "image-gen-rgba",
+      "images": ["rgba", 0]
+    }
+  }
+}

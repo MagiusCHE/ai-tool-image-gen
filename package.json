@@ -1,0 +1,46 @@
+{
+  "name": "ai-tool-image-gen",
+  "version": "0.1.0",
+  "description": "Self-contained image generation tool wrapping a local ComfyUI instance — usable as CLI and as MCP server",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "image-gen": "./bin/image-gen",
+    "image-gen-mcp": "./bin/image-gen-mcp"
+  },
+  "scripts": {
+    "configure": "tsx src/configure.ts",
+    "step:build": "tsc && node -e \"const fs=require('node:fs'),p=require('node:path');const src='src/workflows',dst='dist/workflows';fs.mkdirSync(dst,{recursive:true});for(const f of fs.readdirSync(src))fs.copyFileSync(p.join(src,f),p.join(dst,f));\"",
+    "step:wizard": "tsx src/cli.ts setup",
+    "step:check": "tsx src/cli.ts doctor",
+    "step:gen": "tsx src/cli.ts generate",
+    "step:register-mcp": "tsx src/cli.ts register-mcp",
+    "step:install-cli": "tsx src/cli.ts install-cli",
+    "step:uninstall-cli": "tsx src/cli.ts uninstall-cli",
+    "step:mcp-serve": "tsx src/mcp-server.ts",
+    "step:dev": "tsx src/cli.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "chalk": "^5.3.0",
+    "cli-progress": "^3.12.0",
+    "commander": "^12.1.0",
+    "ora": "^8.1.1",
+    "prompts": "^2.4.2",
+    "sharp": "^0.33.5",
+    "undici": "^6.21.0",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/node": "^22.10.2",
+    "@types/prompts": "^2.4.9",
+    "@types/ws": "^8.5.13",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
